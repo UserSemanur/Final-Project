@@ -1,0 +1,39 @@
+//Installing Necessary Modules
+
+import torch
+import torchvision
+import torchvision.transforms as T
+import torchvision.models as models
+import torch.nn as nn
+import torch.optim as optim
+
+import pandas as pd
+from imblearn.over_sampling import RandomOverSampler as ROS
+from sklearn.model_selection import train_test_split
+from torch.utils.data import Dataset, DataLoader
+
+import numpy as np
+import os
+import random
+import torch.nn.functional as F
+from tqdm import tqdm
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix
+
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+
+RANDOM_SEED = 42
+
+def set_seed(seed):
+    np.random.seed(seed)
+    random.seed(seed)
+    torch.manual_seed(seed)
+    torch.cuda.manual_seed(seed)
+    torch.backends.cudnn.deterministic = True
+    torch.backends.cudnn.benchmark = False
+    os.environ["PYTHONHASHSEED"] = str(seed)
+    print(f"Random seed {seed} olarak ayarlandı")
+
+set_seed(RANDOM_SEED)
